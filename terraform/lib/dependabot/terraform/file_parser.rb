@@ -260,9 +260,7 @@ module Dependabot
             parsed_file_helper(
               file,
               # terraform-config-inspect only works when provided a directory
-              "terraform-config-inspect --json .",
-              # specifying $GOPATH/bin:$PATH here doesn't seem to work..
-              "PATH" => "/opt/go/gopath/bin:$PATH"
+              "#{terraform_parser_path('terraform-config-inspect')}  --json .",
             )
           rescue SharedHelpers::HelperSubprocessFailed => e
             @msg << "terraform-config-inspect: " + e.message.strip
